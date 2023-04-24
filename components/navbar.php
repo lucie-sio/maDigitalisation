@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-secondary">
   <div class="container-fluid">
     <img src="/assets/logo.png" alt="Digitalisation" height="50" width="50">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Accueil</a>
