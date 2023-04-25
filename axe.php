@@ -1,10 +1,8 @@
 <?php include('layout/header.php'); 
 
-$axeId = $_POST['id'];
-
 include_once("fonction/query.php");
 $db = new myDB();
-$axe = $db->get_axe($axeId);
+$axe = $db->get_axe($_POST['id']);
 
 
 include('components/navbar.php'); ?>

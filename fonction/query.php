@@ -18,7 +18,7 @@ class myDB{
     // Récupération d'un Axe
     public function get_axe($id) {
         $data = $this->bdd()->query("SELECT * FROM axe WHERE id = ".$id);
-        return $data->fetchAll();
+        return $data->fetch();
     }
 
 

@@ -16,14 +16,14 @@ include('components/navbar.php');
 
     <div class="row text-center m-5">
 
-      <?php foreach($axes as $axe): ?>
+      <?php foreach($axes as $var): ?>
 		<div class="col-lg-4">
-			<img src="<?= $axe['img_url'] ?>" alt="" width="70" height="70">
-			<h2 class="fw-normal"><?= $axe['name'] ?></h2>
+			<img src="<?= $var['img_url'] ?>" alt="" width="70" height="70">
+			<h2 class="fw-normal"><?= $var['name'] ?></h2>
 			<p>Compétences des collaborateurs de l'entreprise</p>
 			<p>
 				<form method="POST" action="axe.php">
-					<input type="hidden" name="id" value="<?= $axe['id'] ?>">
+					<input type="hidden" name="id" value="<?= $var['id'] ?>">
 					<button class="btn btn-secondary" type="submit" href="axe.php">Voir l'axe</button>
 				</form>
 			</p>
