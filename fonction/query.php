@@ -21,9 +21,17 @@ class myDB{
         return $data->fetch();
     }
 
+    // Récupération de toutes les entreprises enregistrées
+    public function get_companies() {
+        $data = $this->bdd()->query("SELECT * FROM company");
+        return $data->fetchAll();
+    }
 
-
-
+    // Récupération d'une entreprise
+    public function get_company($id) {
+        $data = $this->bdd()->query("SELECT * FROM company WHERE id = ".$id);
+        return $data->fetch();
+    }
 
 }
 

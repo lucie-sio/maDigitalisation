@@ -3,6 +3,7 @@
 include_once("fonction/query.php");
 $db = new myDB();
 $axes = $db->get_axes();
+$companies = $db->get_companies();
 
 ?>
 
@@ -14,6 +15,8 @@ $axes = $db->get_axes();
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Accueil</a>
         </li>
+
+        <!-- Liste des Axes -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Axes
@@ -23,7 +26,24 @@ $axes = $db->get_axes();
               <li>
                 <form method="POST" action="axe.php">
                   <input type="hidden" name="id" value="<?= $var['id'] ?>">
-                  <button class="dropdown-item" type="submit" href="axe.php"><?= $var['name'] ?></button>
+                  <button class="dropdown-item" type="submit"><?= $var['name'] ?></button>
+                </form>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </li>
+
+        <!-- Liste des Entreprises -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Entreprises
+          </a>
+          <ul class="dropdown-menu">
+            <?php foreach($companies as $var): ?>
+              <li>
+                <form method="POST" action="company.php">
+                  <input type="hidden" name="id" value="<?= $var['id'] ?>">
+                  <button class="dropdown-item" type="submit"><?= $var['name'] ?></button>
                 </form>
               </li>
             <?php endforeach; ?>
