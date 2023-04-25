@@ -19,9 +19,13 @@ $axes = $db->get_axes();
             Axes
           </a>
           <ul class="dropdown-menu">
-
             <?php foreach($axes as $axe): ?>
-              <li><a class="dropdown-item" href="axe.php?id=<?= $axe['id'] ?>"><?= $axe['name'] ?></a></li>
+              <li>
+                <form method="POST" action="axe.php">
+                  <input type="hidden" name="id" value="<?= $axe['id'] ?>">
+                  <button class="dropdown-item" type="submit" href="axe.php"><?= $axe['name'] ?></button>
+                </form>
+              </li>
             <?php endforeach; ?>
           </ul>
         </li>
