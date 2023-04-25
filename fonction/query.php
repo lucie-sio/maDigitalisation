@@ -33,6 +33,29 @@ class myDB{
         return $data->fetch();
     }
 
+    // Récupération d'un Axe
+    public function get_axeall($id) {
+        $data = $this->bdd()->query("
+            SELECT
+            axe.id AS axe_id,
+            axe.name AS axe_name,
+            item.id AS item_id,
+            item.axe_id AS item_axe_id,
+            item.name AS item_name,
+            question.id AS question_id,
+            question.item_id AS question_item_id,
+            question.question AS question_question,
+            question.max_score AS question_max_score
+            FROM question
+            LEFT JOIN item ON question.item_id = item.id
+            LEFT JOIN axe ON item.axe_id = axe.id
+            WHERE axe.id = ".$id
+        );
+        return $data->fetchAll();
+    }
+
+
+
     // Récupération des scores d'une entreprise
     public function get_scores($id) {
         $data = $this->bdd()->query("
