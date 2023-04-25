@@ -1,6 +1,6 @@
 <?php include('layout/header.php'); 
 
-$axeId = $_GET['id'];
+$axeId = $_POST['id'];
 
 include_once("fonction/query.php");
 $db = new myDB();
