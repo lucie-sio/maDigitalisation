@@ -21,7 +21,12 @@ include('components/navbar.php');
 			<img src="<?= $axe['img_url'] ?>" alt="" width="70" height="70">
 			<h2 class="fw-normal"><?= $axe['name'] ?></h2>
 			<p>Compétences des collaborateurs de l'entreprise</p>
-			<p><a class="btn btn-secondary" href="axe.php?id=<?= $axe['id'] ?>">Voir l'axe</a></p>
+			<p>
+				<form method="POST" action="axe.php">
+					<input type="hidden" name="id" value="<?= $axe['id'] ?>">
+					<button class="btn btn-secondary" type="submit" href="axe.php">Voir l'axe</button>
+				</form>
+			</p>
 		</div>
       <?php endforeach; ?>
 	  
