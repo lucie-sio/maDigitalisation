@@ -1,5 +1,9 @@
 <?php
 
+include_once("fonction/query.php");
+$db = new myDB();
+$axes = $db->get_axes();
+
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-secondary">
@@ -15,9 +19,10 @@
             Axes
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="axe.php?id=1">Compétences</a></li>
-            <li><a class="dropdown-item" href="axe.php?id=2">Réactivité</a></li>
-            <li><a class="dropdown-item" href="axe.php?id=3">Numérique</a></li>
+
+            <?php foreach($axes as $axe): ?>
+              <li><a class="dropdown-item" href="axe.php?id=<?= $axe['id'] ?>"><?= $axe['name'] ?></a></li>
+            <?php endforeach; ?>
           </ul>
         </li>
       </ul>

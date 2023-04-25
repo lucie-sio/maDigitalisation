@@ -1,8 +1,8 @@
 <?php 
 
-include("fonction/query.php");
+include_once("fonction/query.php");
 $db = new myDB();
-$axes = $db->get_axe();
+$axes = $db->get_axes();
 
 include('layout/header.php');
 include('components/navbar.php'); 
@@ -29,6 +29,6 @@ include('components/navbar.php');
 			</p>
 		</div>
       <?php endforeach; ?>
-	  
+
     </div>
 <?php include('layout/footer.php'); ?>
