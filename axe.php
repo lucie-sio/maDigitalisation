@@ -6,7 +6,7 @@ if(!isset($_POST['id'])){
 
 include_once("fonction/query.php");
 $db = new myDB();
-$axe = $db->get_axe($axeId);
+$axe = $db->get_axe($_POST['id']);
 
 include('components/navbar.php'); ?>
 
@@ -25,7 +25,7 @@ include('components/navbar.php'); ?>
     </thead>
     <tbody>
         <?php
-            $rows = $db->get_axeall($axeId);
+            $rows = $db->get_axeall($_POST['id']);
             $idNBOccurences = array();
             foreach($rows as $row){
                 $idNB = $row['item_id'];
