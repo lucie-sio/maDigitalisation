@@ -18,7 +18,7 @@ include('components/navbar.php');
 
       <?php foreach($axes as $var): ?>
 		<div class="col-lg-4">
-			<img src="<?= $var['img_url'] ?>" alt="" width="70" height="70">
+			<img src="<?= $var['img_url'] ?>" alt="" height="70">
 			<h2 class="fw-normal"><?= $var['name'] ?></h2>
 			<p>Compétences des collaborateurs de l'entreprise</p>
 			<p>

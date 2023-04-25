@@ -33,5 +33,28 @@ class myDB{
         return $data->fetch();
     }
 
+    // Récupération des scores d'une entreprise
+    public function get_scores($id) {
+        $data = $this->bdd()->query("
+            SELECT score.*, 
+            question.*,
+            item.id,
+            item.axe_id,
+            item.name as item_name,
+            axe.id,
+            axe.name as axe_name
+
+            FROM score
+            JOIN question ON score.question_id = question.id
+            JOIN item ON question.item_id = item.id
+            JOIN axe ON item.axe_id = axe.id
+            WHERE score.company_id = ".$id."
+            ORDER BY score.question_id ASC;
+        ");
+
+
+        return $data->fetchAll();
+    }
+
 }
 
