@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 25, 2023 at 01:41 PM
+-- Generation Time: Apr 25, 2023 at 01:56 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -38,9 +38,9 @@ CREATE TABLE `axe` (
 --
 
 INSERT INTO `axe` (`id`, `name`, `img_url`) VALUES
-(1, 'Compétences', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Wii-Console.png/900px-Wii-Console.png'),
-(2, 'Réactivité', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Nintendo-Switch-wJoyCons-BlRd-Standing-FL.jpg/450px-Nintendo-Switch-wJoyCons-BlRd-Standing-FL.jpg'),
-(3, 'Numérique', NULL);
+(1, 'Compétences', 'https://thumbs.dreamstime.com/b/life-skills-icon-outline-vector-web-design-isolated-white-background-style-176301221.jpg'),
+(2, 'Réactivité', 'https://static.vecteezy.com/system/resources/previews/000/583/361/original/timer-icon-vector.jpg'),
+(3, 'Numérique', 'https://cdn-icons-png.flaticon.com/512/900/900967.png');
 
 -- --------------------------------------------------------
 

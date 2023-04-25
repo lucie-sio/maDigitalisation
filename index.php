@@ -24,7 +24,7 @@ include('components/navbar.php');
 			<p>
 				<form method="POST" action="axe.php">
 					<input type="hidden" name="id" value="<?= $var['id'] ?>">
-					<button class="btn btn-secondary" type="submit" href="axe.php">Voir l'axe</button>
+					<button class="btn btn-info" type="submit" href="axe.php">Voir l'axe</button>
 				</form>
 			</p>
 		</div>

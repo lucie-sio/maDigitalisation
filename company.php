@@ -1,11 +1,11 @@
 <?php include('layout/header.php'); 
 
+if(!isset($_POST['id'])){
+    header('Location: notfound.php');
+}
+
 include_once("fonction/query.php");
 $db = new myDB();
-
-if(!isset($_POST['id'])){
-    die();
-}
 
 $company = $db->get_company($_POST['id']);
 $scores = $db->get_scores($_POST['id']);
@@ -19,7 +19,6 @@ include('components/navbar.php'); ?>
         <h3><?= $company['description'] ?></h3>
     </div>
 </div>
-
 
 <div class="row m-5">
     <div class="col">
@@ -53,13 +52,9 @@ include('components/navbar.php'); ?>
                 <?php endforeach; ?>
             </tbody>
 
-
-
-
         </table>
-            
-        </div>
     </div>
+</div>
 
 
 <?php include('layout/footer.php'); ?>

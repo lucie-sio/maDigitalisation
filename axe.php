@@ -1,11 +1,12 @@
 <?php include('layout/header.php'); 
 
-$axeId = $_POST['id'];
+if(!isset($_POST['id'])){
+    header('Location: notfound.php');
+}
 
 include_once("fonction/query.php");
 $db = new myDB();
 $axe = $db->get_axe($axeId);
-
 
 include('components/navbar.php'); ?>
 
