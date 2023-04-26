@@ -1,13 +1,13 @@
 <?php 
 
-if(!isset($id)){
-    var_dump($id);
-}
-
 include_once("fonction/query.php");
 $db = new myDB();
-
 $company = $db->get_company($id);
+
+if(!$company){
+    header('Location: /404');
+}
+
 $questions = $db->get_questions();
 $scores = $db->get_scores($id);
 
@@ -23,8 +23,7 @@ function saveScores($idCompany){
 
 include('layout/header.php'); ?>
 
-<pre><?= var_dump($_POST); ?></pre>
-
+<!-- AFFICHAGE -->
 <div class="row m-5">
     <div class="col text-center">
         <h1><?= $company['name'] ?></h1>
@@ -37,7 +36,7 @@ include('layout/header.php'); ?>
         <table class="table table-striped table-bordered table-sm">
 
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th>Item</th>
                     <th>Question</th>
                     <th>Score</th>
@@ -88,6 +87,5 @@ include('layout/header.php'); ?>
         </table>
     </div>
 </div>
-
 
 <?php include('layout/footer.php'); ?>
