@@ -4,9 +4,7 @@ include_once("fonction/query.php");
 $db = new myDB();
 $axes = $db->get_axes();
 
-include('layout/header.php');
-include('components/navbar.php'); 
-?>
+include('layout/header.php'); ?>
 
     <div class="row m-5">
         <div class="col">
@@ -22,10 +20,7 @@ include('components/navbar.php');
 			<h2 class="fw-normal"><?= $var['name'] ?></h2>
 			<p>Compétences des collaborateurs de l'entreprise</p>
 			<p>
-				<form method="POST" action="axe.php">
-					<input type="hidden" name="id" value="<?= $var['id'] ?>">
-					<button class="btn btn-info" type="submit" href="axe.php">Voir l'axe</button>
-				</form>
+                <a class="btn btn-info" href="/axe/<?= $var['id'] ?>">>Voir l'axe</a>
 			</p>
 		</div>
       <?php endforeach; ?>

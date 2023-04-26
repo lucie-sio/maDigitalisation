@@ -21,19 +21,7 @@ class myDB{
         return $data->fetch();
     }
 
-    // Récupération de toutes les entreprises enregistrées
-    public function get_companies() {
-        $data = $this->bdd()->query("SELECT * FROM company");
-        return $data->fetchAll();
-    }
-
-    // Récupération d'une entreprise
-    public function get_company($id) {
-        $data = $this->bdd()->query("SELECT * FROM company WHERE id = ".$id);
-        return $data->fetch();
-    }
-
-    // Récupération d'un Axe
+    // Récupération d'un Axe entier avec Items et Questions
     public function get_axeall($id) {
         $data = $this->bdd()->query("
             SELECT
@@ -54,30 +42,90 @@ class myDB{
         return $data->fetchAll();
     }
 
+    // Récupération de toutes les entreprises enregistrées
+    public function get_companies() {
+        $data = $this->bdd()->query("SELECT * FROM company");
+        return $data->fetchAll();
+    }
+
+    // Récupération d'une entreprise
+    public function get_company($id) {
+        $data = $this->bdd()->query("SELECT * FROM company WHERE id = ".$id);
+        return $data->fetch();
+    }
 
 
-    // Récupération des scores d'une entreprise
-    public function get_scores($id) {
-        $data = $this->bdd()->query("
-            SELECT score.*, 
-            question.*,
-            item.id,
-            item.axe_id,
-            item.name as item_name,
-            axe.id,
-            axe.name as axe_name
+    #region page company.php
+
+        // Toutes les questions avec item et axe d'appartenance
+        public function get_questions() {
+            $data = $this->bdd()->query("
+                SELECT 
+                question.id AS question_id,
+                question.item_id AS question_item_id,
+                question.question AS question_question,
+                question.max_score AS question_max_score,
+                item.id AS item_id,
+                item.axe_id AS item_axe_id,
+                item.name AS item_name,
+                axe.id AS axe_id,
+                axe.name AS axe_name
+
+                FROM question
+                JOIN item ON question.item_id = item.id
+                JOIN axe ON item.axe_id = axe.id
+                ORDER BY axe.id ASC, item.id ASC, question.id ASC;
+            ");
+
+            return $data->fetchAll();
+        }
+        
+        // Tous les scores d'une entreprise
+        public function get_scores($id) {
+            $data = $this->bdd()->query("
+                SELECT * FROM score
+                WHERE company_id = ".$id.";
+            ");
+
+            $questions = [];
+
+            foreach($data->fetchAll() as $question) {
+                $questions[$question['question_id']] = $question;
+            }
+
+            return $questions;
+        }
+        
+        // Tous les scores d'une entreprise
+        public function get_scores_company($id) {
+            $result = [];
+
+            $result['company'] = $this->get_company($id);
+
+            $data = $this->bdd()->query("
+            SELECT 
+            score.*,
+            question.id AS question_id,
+            question.item_id AS question_item_id,
+            question.question AS question_question,
+            item.id AS item_id,
+            item.axe_id AS item_axe_id,
+            item.name AS item_name,
+            axe.id AS axe_id,
+            axe.name AS axe_name
 
             FROM score
             JOIN question ON score.question_id = question.id
             JOIN item ON question.item_id = item.id
             JOIN axe ON item.axe_id = axe.id
             WHERE score.company_id = ".$id."
-            ORDER BY score.question_id ASC;
-        ");
+            ORDER BY axe.id ASC, item.id ASC, question.id ASC;
+            ");
 
+            $result['score'] = $data->fetchAll();
 
-        return $data->fetchAll();
-    }
-
+            return $result;
+        }
+        #endregion
 }
 

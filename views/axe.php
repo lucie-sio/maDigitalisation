@@ -1,14 +1,20 @@
-<?php include('layout/header.php'); 
+<?php 
 
-if(!isset($_POST['id'])){
+if(!$id){
     header('Location: notfound.php');
 }
 
 include_once("fonction/query.php");
 $db = new myDB();
-$axe = $db->get_axe($_POST['id']);
+$axe = $db->get_axe($id);
 
-include('components/navbar.php'); ?>
+if(!$axe){
+    header('Location: ../notfound.php');
+}
+
+$rows = $db->get_axeall($id);
+
+include('layout/header.php'); ?>
 
 <div class="row m-5">
     <div class="col">
@@ -25,7 +31,6 @@ include('components/navbar.php'); ?>
     </thead>
     <tbody>
         <?php
-            $rows = $db->get_axeall($_POST['id']);
             $idNBOccurences = array();
             foreach($rows as $row){
                 $idNB = $row['item_id'];
