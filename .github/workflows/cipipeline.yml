@@ -41,7 +41,7 @@ jobs:
           
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}
+          ls -la ${{ github.workspace }}
         
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
