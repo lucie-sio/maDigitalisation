@@ -12,6 +12,23 @@ env:
   IMAGE_VERSION: $(date +%s)
 
 jobs:
+  create-envfile:
+ 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1.3
+      with:
+        DB_CONNECTION: mysql
+        DB_HOST: 172.16.47.178
+        DB_PORT: 3306
+        DB_DATABASE: mydatabase
+        DB_USERNAME: user
+        DB_PASSWORD: password
+        file_name: .env
+        fail_on_empty: false
+
+        
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
