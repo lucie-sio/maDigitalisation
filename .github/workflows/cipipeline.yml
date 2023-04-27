@@ -39,4 +39,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: gyomada/transverse:$(date +%s)
+          tags: gyomada/transverse:v3
