@@ -28,4 +28,12 @@ include('layout/header.php'); ?>
 
 </div>
 
+<!-- FOOTER -->
+<footer class="row fixed-bottom">
+    <div class="col text-center m-1">
+        <p class="text-muted"><?= date("Y"); ?> <?= shell_exec('git describe --tags --abbrev=0'); ?></p>
+    </div>
+</footer>
+
+
 <?php include('layout/footer.php'); ?>

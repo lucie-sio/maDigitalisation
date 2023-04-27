@@ -1,7 +1,14 @@
+/* Pour footer */
+body {
+  padding-bottom: 70px;
+}
+
+/* Couleur btn-info custom + shadow */
 .btn-info,
 .btn-info:hover,
 .btn-info:active,
 .btn-info:visited {
   background-color: #77c3b1 !important;
+  border-color: #77c3b1;
   box-shadow: 5px 5px 10px #435d57;
 }
