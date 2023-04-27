@@ -126,6 +126,27 @@ class myDB{
 
             return $result;
         }
+
+        public function add_company($name, $descrition) {
+            try{
+                $donnees = [
+                    'id' => 0, 
+                    'prenom' => $name,
+                    'nom' => $descrition,
+                    'date_ins' => date('Y-m-d G:i:s', time()+3600*2),
+                ];
+                $sth = $this->bdd()->prepare("INSERT INTO company VALUES (:id, :prenom, :nom, :date_ins)");
+                $sth->execute($donnees);
+                //echo 'Entrée ajoutée dans la table';
+                
+                $data = $this->bdd()->query("SELECT MAX(id) AS id FROM company");
+                $coucou = $data->fetch();
+                header('Location: /company/'.$coucou['id']);
+            }
+            catch(PDOException $e){
+                echo "Erreur : " . $e->getMessage();
+            }
+        }
         #endregion
 }
 

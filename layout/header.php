@@ -3,6 +3,12 @@
     $db = new myDB();
     $axes = $db->get_axes();
     $companies = $db->get_companies();
+
+
+    if((isset($_POST['POST_name'])) AND (isset($_POST['POST_Descrit']))){
+        $db->add_company($_POST['POST_name'], $_POST['POST_Descrit']);
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,18 +54,56 @@
 
                     <!-- Liste des Entreprises -->
                     <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Entreprises
-                    </a>
-                    <ul class="dropdown-menu">
-                        <?php foreach($companies as $var): ?>
-                        <li>
-                            <a class="dropdown-item" href="/company/<?= $var['id'] ?>"><?= $var['name'] ?></a>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Entreprises
+                        </a>
+                        <ul class="dropdown-menu">
+                            <?php foreach($companies as $var): ?>
+                            <li>
+                                <a class="dropdown-item" href="/company/<?= $var['id'] ?>"><?= $var['name'] ?></a>
+                            </li>
+                            <?php endforeach; ?>
+                            <li>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ADDENT">
+                                  Ajouter Entreprises
+                                </button>
+                                <!-- Button trigger modal -->
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="ADDENT" tabindex="-1" aria-labelledby="ADDENTLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ADDENTLabel">Ajouter une entreprises</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nom :</label>
+                        <input type="text" class="form-control" id="recipient-name" name="POST_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Description :</label>
+                        <textarea class="form-control" id="message-text" name="POST_Descrit" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="Submit" class="btn btn-primary">Enregistrement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
