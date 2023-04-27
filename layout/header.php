@@ -5,6 +5,10 @@
     $companies = $db->get_companies();
 
 
+    if((isset($_POST['POST_AXE'])) AND (isset($_POST['POST_URL']))){
+        $db->add_axe($_POST['POST_AXE'], $_POST['POST_URL']);
+    }
+
     if((isset($_POST['POST_name'])) AND (isset($_POST['POST_Descrit']))){
         $db->add_company($_POST['POST_name'], $_POST['POST_Descrit']);
     }
@@ -49,6 +53,13 @@
                             <a class="dropdown-item" href="/axe/<?= $var['id'] ?>"><?= $var['name'] ?></a>
                         </li>
                         <?php endforeach; ?>
+                        <li>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ADDAXE" style="background-color: #77c3b1;">
+                            + Ajouter Axe
+                            </button>
+                            <!-- Button trigger modal -->
+                        </li>
                     </ul>
                     </li>
 
@@ -65,8 +76,8 @@
                             <?php endforeach; ?>
                             <li>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ADDENT">
-                                  Ajouter Entreprises
+                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ADDENT" style="background-color: #77c3b1;">
+                                  + Ajouter Entreprise
                                 </button>
                                 <!-- Button trigger modal -->
                             </li>
@@ -76,6 +87,36 @@
             </div>
         </div>
     </nav>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ADDAXE" tabindex="-1" aria-labelledby="ADDAXELabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ADDAXELabel">Ajouter un axe</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nom :</label>
+                        <input type="text" class="form-control" id="recipient-name" name="POST_AXE" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">URL :</label>
+                        <input type="text" class="form-control" id="recipient-name" name="POST_URL" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="Submit" class="btn btn-primary">Enregistrement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
 
 
 
