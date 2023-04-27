@@ -9,17 +9,44 @@ class myDB{
         return $pdo->connect();
     }
     
-    // Récupération des Axes
-    public function get_axes() {
-        $data = $this->bdd()->query("SELECT * FROM axe");
-        return $data->fetchAll();
-    }
+    #region AXES
+    
+        // Récupération des Axes
+        public function get_axes() {
+            $data = $this->bdd()->query("SELECT * FROM axe");
+            return $data->fetchAll();
+        }
 
-    // Récupération d'un Axe
-    public function get_axe($id) {
-        $data = $this->bdd()->query("SELECT * FROM axe WHERE id = ".$id);
-        return $data->fetch();
-    }
+        // Récupération d'un Axe
+        public function get_axe($id) {
+            $data = $this->bdd()->query("SELECT * FROM axe WHERE id = ".$id);
+            return $data->fetch();
+        }
+
+        public function add_axe($name, $url) {
+            try{
+                $name = strip_tags($name);
+                $url = strip_tags($url);
+
+                $donnees = [
+                    'id' => 0, 
+                    'name' => $name,
+                    'url' => $url,
+                ];
+                $sth = $this->bdd()->prepare("INSERT INTO axe VALUES (:id, :name, :url)");
+                $sth->execute($donnees);
+                //echo 'Entrée ajoutée dans la table';
+
+                $data = $this->bdd()->query("SELECT MAX(id) AS id FROM axe");
+                $coucou = $data->fetch();
+                header('Location: /axe/'.$coucou['id']);
+            }
+            catch(PDOException $e){
+                echo "Erreur : " . $e->getMessage();
+            }
+        }
+
+    #region AXES
 
     // Récupération d'un Axe entier avec Items et Questions
     public function get_axeall($id) {
@@ -129,6 +156,9 @@ class myDB{
 
         public function add_company($name, $descrition) {
             try{
+                $name = strip_tags($name);
+                $descrition = strip_tags($descrition);
+
                 $donnees = [
                     'id' => 0, 
                     'prenom' => $name,
