@@ -32,12 +32,11 @@ jobs:
         with:
           php-version: '8.1.10'
           
-      - name: List files in the repository
-        run: |
-          ls -la ${{ github.workspace }}
-          
       - name: Install dependencies
         run: composer install
+        
+      - name: Run PHPUnit tests
+        uses: phpunit/phpunit@v9
         
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
