@@ -60,7 +60,15 @@ include('layout/header.php'); ?>
                             <?php if(!isset($scores[$var['question_id']]['score'])): ?>
                                 <td>
                                     <div class="form-outline">
-                                        <input type="number" name="questions[<?= $var['question_id'] ?>]" id="<?= $var['question_id'] ?>" value="" class="form-control"/>
+                                        <input 
+                                            type="number" 
+                                            name="questions[<?= $var['question_id'] ?>]" 
+                                            id="<?= $var['question_id'] ?>" 
+                                            value="" 
+                                            min="0"
+                                            max="<?= $var['question_max_score'] ?>"
+                                            class="form-control"
+                                        />
                                     </div>
                                 </td>
                             <?php else: ?>

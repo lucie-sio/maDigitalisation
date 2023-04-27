@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 25, 2023 at 01:56 PM
+-- Generation Time: Apr 27, 2023 at 07:10 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -61,7 +61,8 @@ CREATE TABLE `company` (
 
 INSERT INTO `company` (`id`, `name`, `description`, `created_at`) VALUES
 (1, 'A2micile Europe', 'Entreprise de services à la personne.', '2023-04-25 08:06:08'),
-(2, 'Police Nationale', 'Service publique.', '2023-04-25 08:07:00');
+(2, 'Police Nationale', 'Service publique.', '2023-04-25 08:07:00'),
+(3, 'ESIG', 'Services informatiques', '2023-04-26 09:06:59');
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,6 @@ INSERT INTO `score` (`id`, `company_id`, `question_id`, `score`, `comment`) VALU
 (14, 1, 14, 1, ''),
 (15, 1, 15, 1, ''),
 (16, 1, 16, 2, ''),
-(17, 1, 17, 1, ''),
 (18, 1, 18, 0, ''),
 (19, 1, 19, 0, ''),
 (20, 1, 20, 2, ''),
@@ -295,13 +295,13 @@ ALTER TABLE `score`
 -- AUTO_INCREMENT for table `axe`
 --
 ALTER TABLE `axe`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `item`
