@@ -1,5 +1,13 @@
 {
-    "require-dev": {
+    "name": "rouli/ma-digitalisation",
+    "description": "Interface de diagnostic de digitalisation d'une entreprise",
+    "require": {
         "phpunit/phpunit": "^10.1"
-    }
+    },
+    "authors": [
+        {
+            "name": "Evil Lucie",
+            "email": "roulier.lucie@outlook.fr"
+        }
+    ]
 }
