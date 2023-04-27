@@ -55,8 +55,8 @@
                         <?php endforeach; ?>
                         <li>
                             <!-- Button trigger modal -->
-                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ADDAXE">
-                            Ajouter Axes
+                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ADDAXE" style="background-color: #77c3b1;">
+                            + Ajouter Axe
                             </button>
                             <!-- Button trigger modal -->
                         </li>
@@ -76,8 +76,8 @@
                             <?php endforeach; ?>
                             <li>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ADDENT">
-                                  Ajouter Entreprises
+                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ADDENT" style="background-color: #77c3b1;">
+                                  + Ajouter Entreprise
                                 </button>
                                 <!-- Button trigger modal -->
                             </li>
