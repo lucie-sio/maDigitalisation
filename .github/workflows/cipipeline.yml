@@ -12,35 +12,39 @@ env:
   IMAGE_VERSION: $(date +%s)
 
 jobs:
-  create-envfile:
- 
-    runs-on: ubuntu-latest
-    steps:
-    - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1.3
-      with:
-        DB_CONNECTION: mysql
-        DB_HOST: 172.16.47.178
-        DB_PORT: 3306
-        DB_DATABASE: mydatabase
-        DB_USERNAME: user
-        DB_PASSWORD: password
-        file_name: .env
-        fail_on_empty: false
-
-        
   build-and-deploy:
     runs-on: ubuntu-latest
+  
     steps:
-      # Récupérer le code source de l'application hébergé sur Github pour le rendre disponible pour Actions
+
+        # Récupérer le code source de l'application hébergé sur Github pour le rendre disponible pour Actions
       - name: Checkout code
         uses: actions/checkout@v3
+        
+        # Créer le fichier .env
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo DB_CONNECTION=mysql >> .env
+          echo DB_HOST=172.16.47.178 >> .env
+          echo DB_PORT=3306 >> .env
+          echo DB_DATABASE=mydatabase >> .env
+          echo DB_USERNAME=user >> .env
+          echo DB_PASSWORD=password >> .env
+          cat .env
 
         # Configurer l'environnement de build avec la bonne version de PHP
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1.10'
+          
+      - name: List files in the repository
+        run: |
+          ls -la ${{ github.workspace }}
+          
+      - name: Install dependencies
+        run: composer install
         
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -56,4 +60,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: gyomada/transverse:v3
+          tags: gyomada/transverse:v4
