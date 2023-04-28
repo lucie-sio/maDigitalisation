@@ -7,13 +7,13 @@ $axes = $db->get_axes();
 include('layout/header.php'); ?>
 
 <!-- AFFICHAGE -->
-<div class="row m-5">
+<div class="row m-3">
     <div class="col">
         <h1 class="text-center">La digitalisation de l'entreprise</h1>
     </div>
 </div>
 
-<div class="row text-center m-5">
+<div class="row text-center">
 
     <?php foreach($axes as $var): ?>
     <div class="col-lg-4">
@@ -26,6 +26,12 @@ include('layout/header.php'); ?>
     </div>
     <?php endforeach; ?>
 
+</div>
+
+<div class="row m-3">
+    <div class="col text-center">
+        <img src="../assets/merci.gif" alt="Merci pour votre Attention ! Avez-vous des questions ?" height="200px">
+    </div>
 </div>
 
 <!-- FOOTER -->
