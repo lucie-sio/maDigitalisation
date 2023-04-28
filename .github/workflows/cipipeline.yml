@@ -14,8 +14,6 @@ jobs:
         # Récupérer le code source de l'application hébergé sur Github pour le rendre disponible pour Actions
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          ref: release/3.0.0.0
         
         # Créer le fichier .env
       - name: 'Create env file'
@@ -34,14 +32,14 @@ jobs:
         with:
           php-version: '8.1.10'
           
-      #- name: Install dependencies
-        #run: composer install
+      - name: Install dependencies
+        run: composer install
         
-      #- name: Run PHPUnit tests
-        #run: vendor/bin/phpunit tests
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit tests
       
-      #- name: Run PHPStan static code analyse
-        #run: vendor/bin/phpstan analyse fonction api tests views
+      - name: Run PHPStan static code analyse
+        run: vendor/bin/phpstan analyse fonction api tests views
         
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -57,4 +55,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: gyomada/transverse:v3
+          tags: gyomada/transverse:latest
