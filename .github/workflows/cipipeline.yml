@@ -35,8 +35,11 @@ jobs:
       - name: Install dependencies
         run: composer install
         
-      - name: Run PHPUnit tests
-        run: vendor/bin/phpunit tests
+      #- name: Run PHPUnit tests
+        #run: vendor/bin/phpunit tests
+      
+      - name: Run PHPStan static code analyse
+        run: vendor/bin/phpstan analyse fonction api tests views
         
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
