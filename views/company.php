@@ -65,11 +65,9 @@ foreach($get_allaxe as $allaxe) {
                     $var_tpm = "";
                     foreach($get_allquestions as $allquestions) {
                         $get_questionsreponse = $db->get_questionsreponse($id, $allquestions['question_id']);
+                        $reponsescore = "0";
                         foreach($get_questionsreponse as $allquestionsRESPONSE) {
                             $reponsescore = $allquestionsRESPONSE['score_score'];
-                        }
-                        if(!isset($reponsescore)){
-                            $reponsescore = '0';
                         }
                         $chartArray[$allaxe['axe_name']]['score'] += $reponsescore;
                         $chartArray[$allaxe['axe_name']]['nb']++;
@@ -106,7 +104,7 @@ foreach($get_allaxe as $allaxe) {
 
 
     <div>
-  <canvas id="myChart"></canvas>
+  <canvas id="myChart" width="1" height="1"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -158,8 +156,16 @@ foreach ($chartLabels as &$chartLabel) {
       line: {
         borderWidth: 3
       }
-    }
+    }, scale: {
+        beginAtZero: true,
+
+            max: 2,
+        min: 0,
+        stepSize: 1
+
+}
   },
+  
   });
 
 
