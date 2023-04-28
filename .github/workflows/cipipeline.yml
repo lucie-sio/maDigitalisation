@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          ref: release/1.0.0.0
+          ref: release/2.0.0.0
         
         # Créer le fichier .env
       - name: 'Create env file'
@@ -57,4 +57,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: gyomada/transverse:v1
+          tags: gyomada/transverse:v2
