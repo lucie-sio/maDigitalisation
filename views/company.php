@@ -15,12 +15,16 @@ include('layout/header.php'); ?>
 
 <!-- AFFICHAGE -->
 <div class="row m-5">
-    <div class="col text-center">
+    <div class="col-4">
+        <canvas id="myChart" style=" margin: auto;"></canvas>
+    </div>
+    <div class="col-8 text-center my-auto mx-auto">
         <h1><?= $company['name'] ?></h1>
         <h3><?= $company['description'] ?></h3>
     </div>
 </div>
-<FROM>
+
+<form>
 <button type="submit" class="btn btn-info position-fixed top-0 end-0 m-3">Enregistrer la grille</button>
 
 <?php
@@ -100,12 +104,8 @@ foreach($get_allaxe as $allaxe) {
 
     }
     ?>
-    </form>
+</form>
 
-
-    <div>
-  <canvas id="myChart" width="1" height="1"></canvas>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
