@@ -85,25 +85,50 @@ class myDB{
     #region page company.php
 
         // Toutes les questions avec item et axe d'appartenance
-        public function get_questions() {
+        public function get_allaxe() {
             $data = $this->bdd()->query("
-                SELECT 
-                question.id AS question_id,
-                question.item_id AS question_item_id,
-                question.question AS question_question,
-                question.max_score AS question_max_score,
-                item.id AS item_id,
-                item.axe_id AS item_axe_id,
-                item.name AS item_name,
-                axe.id AS axe_id,
-                axe.name AS axe_name
-
-                FROM question
-                JOIN item ON question.item_id = item.id
-                JOIN axe ON item.axe_id = axe.id
-                ORDER BY axe.id ASC, item.id ASC, question.id ASC;
+            SELECT
+            axe.id AS axe_id,
+            axe.name AS axe_name
+            FROM `axe`;
             ");
+            return $data->fetchAll();
+        }
 
+
+        // Toutes les questions avec item et axe d'appartenance
+        public function get_allquestions($id) {
+            $data = $this->bdd()->query("
+            SELECT
+            axe.id axe_id,
+            axe.name axe_name,
+            item.id item_id,
+            item.name item_name,
+            question.id question_id,
+            question.question question_question,
+            question.max_score question_max_score
+            FROM question
+            JOIN item ON item.id = question.item_id
+            JOIN axe ON axe.id = item.axe_id
+            WHERE axe_id = ".$id."
+            ORDER BY axe.id ASC, item.id ASC, question.id ASC;
+            ");
+            return $data->fetchAll();
+        }
+
+
+        // Toutes les questions avec item et axe d'appartenance
+        public function get_questionsreponse($company_id, $question_id) {
+            $data = $this->bdd()->query("
+            SELECT
+            id AS score_id,
+            company_id AS score_company_id,
+            question_id AS score_question_id,
+            score AS score_score,
+            comment AS score_comment
+            FROM score
+            WHERE company_id = ".$company_id." AND question_id = ".$question_id.";
+            ");
             return $data->fetchAll();
         }
         
@@ -126,7 +151,6 @@ class myDB{
         // Tous les scores d'une entreprise
         public function get_scores_company($id) {
             $result = [];
-
             $result['company'] = $this->get_company($id);
 
             $data = $this->bdd()->query("
